@@ -7,8 +7,34 @@ import Profile from "./pages/profile";
 import Settings from "./pages/settings";
 import Board from "./pages/board";
 import Tasks from "./pages/tasks";
+import RequireAuth from "./components/requireAuth";
 
 const router = createBrowserRouter([
+  {
+    element: <RequireAuth />,
+    children: [
+      {
+        path: "board",
+        errorElement: <Error />,
+        element: <Board />,
+      },
+      {
+        path: "tasks",
+        errorElement: <Error />,
+        element: <Tasks />,
+      },
+      {
+        path: "profile",
+        errorElement: <Error />,
+        element: <Profile />,
+      },
+      {
+        path: "settings",
+        errorElement: <Error />,
+        element: <Settings />,
+      },
+    ],
+  },
   {
     path: "/",
     errorElement: <Error />,
@@ -23,26 +49,6 @@ const router = createBrowserRouter([
     path: "signup",
     errorElement: <Error />,
     element: <Signup />,
-  },
-  {
-    path: "board",
-    errorElement: <Error />,
-    element: <Board />,
-  },
-  {
-    path: "tasks",
-    errorElement: <Error />,
-    element: <Tasks />,
-  },
-  {
-    path: "profile",
-    errorElement: <Error />,
-    element: <Profile />,
-  },
-  {
-    path: "settings",
-    errorElement: <Error />,
-    element: <Settings />,
   },
 ]);
 
