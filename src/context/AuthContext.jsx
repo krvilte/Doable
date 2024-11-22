@@ -11,8 +11,8 @@ import { createContext } from "react";
 import { auth } from "../config/firebase";
 
 const methods = {
-  user: () => {},
-  loading: () => {},
+  user: null,
+  loading: Boolean,
   logIn: () => {},
   signUp: () => {},
   logOut: () => {},
