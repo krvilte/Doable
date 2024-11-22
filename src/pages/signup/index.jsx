@@ -1,15 +1,41 @@
-import React from "react";
+import { useForm } from "react-hook-form";
+import { useAuthContext } from "../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { signUp, googleSignIn } = useAuthContext();
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    try {
+      signUp(data.email, data.password);
+      navigate("/board");
+    } catch (error) {
+      console.error(error.message);
+      navigate("/board");
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+      navigate("/board");
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <main>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            alt="Your Company"
-            src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-            className="mx-auto h-10 w-auto"
-          />
+          <img alt="Doable" src="" className="mx-auto h-10 w-auto" />
           <h2 className="mt-4 text-center text-3xl font-bold tracking-tight text-gray-900">
             Create Account
           </h2>
@@ -44,9 +70,12 @@ function Signup() {
                 fill="#EB4335"
               />
             </svg>
-            <p className="ml-4 text-base font-medium text-gray-700">
+            <span
+              onClick={handleGoogleSignIn}
+              className="ml-4 text-base font-medium text-gray-700"
+            >
               Continue with Google
-            </p>
+            </span>
           </button>
           <div className="flex w-full items-center justify-between pt-5">
             <hr className="w-full bg-gray-400" />
@@ -57,7 +86,7 @@ function Signup() {
           </div>
         </div>
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-5">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
               <label
                 htmlFor="email"
@@ -73,9 +102,20 @@ function Signup() {
                   type="email"
                   placeholder="Enter email..."
                   autoComplete="email"
-                  required=""
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                      message: "Enter a valid email",
+                    },
+                  })}
                   className="block w-full rounded-md border-0 px-4 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
                 />
+                {errors.email && (
+                  <span className="text-sm text-red-500">
+                    {errors.email.message}
+                  </span>
+                )}
               </div>
             </div>
             <div>
@@ -95,9 +135,20 @@ function Signup() {
                   type="password"
                   placeholder="Enter password..."
                   autoComplete="current-password"
-                  required=""
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be 8 characters",
+                    },
+                  })}
                   className="block w-full rounded-md border-0 px-4 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
                 />
+                {errors.password && (
+                  <span className="text-sm text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
               </div>
             </div>
             <div>
@@ -111,9 +162,12 @@ function Signup() {
           </form>
           <p className="mt-10 text-center text-sm/6 text-gray-500">
             Already have an account?
-            <span className="cursor-pointer font-semibold text-indigo-600 hover:text-indigo-500">
-              Sign in
-            </span>
+            <Link
+              to={"/login"}
+              className="cursor-pointer font-semibold text-indigo-600 hover:text-indigo-500"
+            >
+              Sign In
+            </Link>
           </p>
         </div>
       </div>
