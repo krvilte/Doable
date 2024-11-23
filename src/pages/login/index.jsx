@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useAuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { Icon, Logo } from "../../components/icons/logo";
 
 const Login = () => {
   const {
@@ -33,16 +34,19 @@ const Login = () => {
     <main>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img alt="Doable" src="" className="mx-auto h-10 w-auto" />
+          <div className="mx-auto w-[50px] h-auto ">
+            <Icon />
+          </div>
+
           <h2 className="mt-4 text-center text-3xl font-bold tracking-tight text-gray-900">
-            Sign in
+            Sign In
           </h2>
         </div>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <button
             aria-label="Continue with google"
             role="button"
-            className="mt-10 flex w-full items-center justify-center rounded-md border border-gray-300 px-4 py-2 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-1"
+            className="mt-10 flex w-full items-center justify-center rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-1"
           >
             <svg
               width={19}
@@ -107,7 +111,7 @@ const Login = () => {
                       message: "Enter a valid email",
                     },
                   })}
-                  className="block w-full rounded-md border-0 px-4 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
+                  className="block w-full rounded-md border-0 px-4 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm/6"
                 />
                 {errors.email && (
                   <span className="text-sm text-red-500">
@@ -136,7 +140,7 @@ const Login = () => {
                   {...register("password", {
                     required: "Password is required",
                   })}
-                  className="block w-full rounded-md border-0 px-4 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
+                  className="block w-full rounded-md border-0 px-4 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm/6"
                 />
                 {errors.password && (
                   <span className="text-sm text-red-500">
@@ -148,7 +152,7 @@ const Login = () => {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-rose-600 px-4 py-2 text-sm/6 font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
               >
                 Sign in
               </button>
@@ -158,7 +162,7 @@ const Login = () => {
             Don't have an account?{" "}
             <Link
               to={"/signup"}
-              className="cursor-pointer font-semibold text-indigo-600 hover:text-indigo-500"
+              className="cursor-pointer font-semibold text-rose-600 hover:text-rose-500"
             >
               Sign Up
             </Link>
