@@ -6,24 +6,12 @@ const Board = () => {
     <Layout>
       <main>
         <div className="m-4">
-          <h1 className="text-xl">Eisenhower Matrix</h1>
+          <h1 className="text-xl font-semibold">Eisenhower Matrix</h1>
 
-          <div className=" mx-auto mt-10">
-            <div className="hidden md:flex justify-between">
-              <div className="w-1/2 text-center font-bold py-2">URGENT</div>
-              <div className="w-1/2 text-center font-bold py-2">NOT URGENT</div>
-            </div>
+          <div className=" mx-auto mt-8">
             <div className="flex">
-              <div className="hidden w-12 md:flex flex-col justify-between">
-                <div className="font-bold py-14 transform -rotate-90 writing-mode-vertical-rl">
-                  IMPORTANT
-                </div>
-                <div className="font-bold py-2 transform -rotate-90 writing-mode-vertical-rl ">
-                  NOT IMPORTANT
-                </div>
-              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-                <div className="bg-green-200 p-4 border border-black">
+                <div className="bg-gray-200 p-4 border border-black">
                   <div className="text-left font-bold text-xl">DO</div>
                   <p>Do it now.</p>
                   <ol className="list-decimal ml-4">
@@ -35,7 +23,7 @@ const Board = () => {
                     <li>Review pull request</li>
                   </ol>
                 </div>
-                <div className="bg-blue-200 p-4 border border-black">
+                <div className="bg-gray-200 p-4 border border-black">
                   <div className="text-left font-bold text-xl">DECIDE</div>
                   <p>Schedule a time to do it.</p>
                   <ol className="list-decimal ml-4">
@@ -44,7 +32,7 @@ const Board = () => {
                     <li>Big refactoring</li>
                   </ol>
                 </div>
-                <div className="bg-yellow-200 p-4 border border-black">
+                <div className="bg-gray-200 p-4 border border-black">
                   <div className="text-left font-bold text-xl">DELEGATE</div>
                   <p>Who can do it for you?</p>
                   <ol className="list-decimal ml-4">
@@ -53,7 +41,7 @@ const Board = () => {
                     <li>Taking interview</li>
                   </ol>
                 </div>
-                <div className="bg-gray-400 p-4 border border-black">
+                <div className="bg-gray-200 p-4 border border-black">
                   <div className="text-left font-bold text-xl">DELETE</div>
                   <p>Eliminate it.</p>
                   <ol className="list-decimal ml-4">
