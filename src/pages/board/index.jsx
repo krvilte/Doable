@@ -1,8 +1,12 @@
 import Layout from "../../components/layout";
 import AddNewTask from "../../components/addTask";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTask, toggleComplete } from "../../redux/slices/taskSlice";
-import { useState } from "react";
+import {
+  deleteTask,
+  toggleComplete,
+  toggleEdit,
+} from "../../redux/slices/taskSlice";
+import { useState, useEffect } from "react";
 import EditTaskForm from "../../components/editTaskForm";
 
 const Board = () => {
@@ -18,8 +22,22 @@ const Board = () => {
     }
   };
 
-  console.log(tasks);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
+  const handleEdit = (taskId) => {
+    dispatch(toggleEdit(taskId));
+    setShowDropdown(null);
+  };
   return (
     <Layout>
       <main>
@@ -77,7 +95,10 @@ const Board = () => {
 
                           {showDropdown === item.id && (
                             <div className="absolute top-full mt-2 right-0 bg-white flex flex-col border border-gray-300 rounded shadow-lg z-10">
-                              <button className="w-full px-4 py-1 text-left hover:bg-gray-100 transition-colors rounded-t">
+                              <button
+                                onClick={() => handleEdit(item.id)}
+                                className="w-full px-4 py-1 text-left hover:bg-gray-100 transition-colors rounded-t"
+                              >
                                 Edit
                               </button>
                               <button

@@ -34,9 +34,16 @@ const tasksSlice = createSlice({
           : task
       );
     },
+    toggleEdit: (state, action) => {
+      state.items = state.items.map((task) =>
+        task.id === action.payload
+          ? { ...task, isEditing: !task.isEditing }
+          : task
+      );
+    },
   },
 });
 
-export const { addTask, editTask, deleteTask, toggleComplete } =
+export const { addTask, editTask, deleteTask, toggleComplete, toggleEdit } =
   tasksSlice.actions;
 export default tasksSlice.reducer;

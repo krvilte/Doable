@@ -11,7 +11,11 @@ const EditTaskForm = ({ taskId }) => {
   const inputRef = useRef(null);
 
   const saveTask = () => {
+    if (text.trim() === "") {
+      return;
+    }
     dispatch(editTask({ id: task.id, text }));
+    dispatch(toggleEdit(task.id));
   };
 
   useEffect(() => {
