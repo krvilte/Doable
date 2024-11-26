@@ -9,16 +9,19 @@ const tasksSlice = createSlice({
         text: "Setup Redux Store",
         status: "delegate",
         completed: false,
+        isEditing: false,
       },
     ],
   },
   reducers: {
     addTask: (state, action) => {
-      state.items.push(action.payload);
+      state.items.push({ ...action.payload, isEditing: true });
     },
     editTask: (state, action) => {
       state.items = state.items.map((task) =>
-        task.id === action.payload.id ? { ...task, text: action.text } : items
+        task.id === action.payload.id
+          ? { ...task, text: action.payload.text, isEditing: false }
+          : task
       );
     },
     deleteTask: (state, action) => {
