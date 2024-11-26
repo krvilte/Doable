@@ -16,7 +16,7 @@ function Error() {
         </p>
         <Link
           to="/"
-          className="mt-6 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300 dark:bg-blue-600 dark:hover:bg-blue-500"
+          className="mt-6 inline-block bg-rose-500 text-white px-4 py-2 rounded-lg shadow hover:bg-rose-600 transition duration-300 dark:bg-rose-600 dark:hover:bg-rose-500"
         >
           Go Back Home
         </Link>
