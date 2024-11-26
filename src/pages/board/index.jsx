@@ -1,7 +1,24 @@
-import React from "react";
 import Layout from "../../components/layout";
+import AddNewTask from "../../components/addTask";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTask, toggleComplete } from "../../redux/slices/taskSlice";
+import { useState } from "react";
 
 const Board = () => {
+  const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.tasks.items);
+  const [showDropdown, setShowDropdown] = useState(null);
+
+  const handleDropdown = (taskId) => {
+    if (showDropdown === taskId) {
+      setShowDropdown(null);
+    } else {
+      setShowDropdown(taskId);
+    }
+  };
+
+  console.log(tasks);
+
   return (
     <Layout>
       <main>
@@ -14,44 +31,63 @@ const Board = () => {
                 DO FIRST
               </h2>
               <ol className="flex flex-col py-2 list-decimal">
-                <li className="flex justify-between list-none px-4 p-1 rounded cursor-pointer text-black hover:bg-gray-200">
-                  <div className="flex items-center gap-x-2">
-                    <input
-                      id="default-checkbox"
-                      type="checkbox"
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <span>Write a blog post</span>
-                  </div>
-
-                  <div className="flex gap-x-2 items-center ">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="w-5 h-5"
-                      onClick={() => {
-                        <div className="bg-green-500">
-                          <button>Edit</button>
-                          <button>Delete</button>
-                        </div>;
-                      }}
+                {tasks
+                  .filter((item) => item.status === "do")
+                  .map((item) => (
+                    <li
+                      key={item.id}
+                      className="relative flex justify-between list-none px-4 p-1 rounded cursor-pointer text-black hover:bg-gray-200"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"
-                      />
-                    </svg>
-                  </div>
-                </li>
+                      <div className="flex items-center gap-x-2">
+                        <input
+                          id="default-checkbox"
+                          onClick={() => dispatch(toggleComplete(item.id))}
+                          type="checkbox"
+                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600"
+                        />
+                        <span className={item.completed ? "line-through " : ""}>
+                          {item.text}
+                        </span>
+                      </div>
+
+                      <div className="flex gap-x-2 items-center ">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                          className="w-5 h-5"
+                          onClick={() => {
+                            handleDropdown(item.id);
+                          }}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"
+                          />
+                        </svg>
+
+                        {showDropdown === item.id && (
+                          <div className="absolute top-full mt-2 right-0 bg-white flex flex-col border border-gray-300 rounded shadow-lg z-10">
+                            <button className="w-full px-4 py-1 text-left hover:bg-gray-100 transition-colors rounded-t">
+                              Edit
+                            </button>
+                            <button
+                              onClick={() => dispatch(deleteTask(item.id))}
+                              className="w-full px-4 py-1 text-left hover:bg-gray-100 transition-colors rounded-b"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </li>
+                  ))}
               </ol>
 
-              <button className="text-left text-base w-full px-4 py-1 rounded text-black bg-transparent hover:bg-gray-200">
-                + Add Task
-              </button>
+              <AddNewTask status={"do"} />
             </div>
           </div>
         </div>

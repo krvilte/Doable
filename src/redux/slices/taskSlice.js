@@ -4,7 +4,12 @@ const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
     items: [
-      { id: 1, text: "Setup Redux Store", status: "do", completed: false },
+      {
+        id: 1,
+        text: "Setup Redux Store",
+        status: "delegate",
+        completed: false,
+      },
     ],
   },
   reducers: {
@@ -17,7 +22,7 @@ const tasksSlice = createSlice({
       );
     },
     deleteTask: (state, action) => {
-      state.items = items.filter((task) => task.id !== action.payload);
+      state.items = state.items.filter((task) => task.id !== action.payload);
     },
     toggleComplete: (state, action) => {
       state.items = state.items.map((task) =>
