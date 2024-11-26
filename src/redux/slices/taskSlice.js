@@ -4,13 +4,13 @@ const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
     items: [
-      {
-        id: 1,
-        text: "Setup Redux Store",
-        status: "delegate",
-        completed: false,
-        isEditing: false,
-      },
+      // {
+      //   id: 1,
+      //   text: "Setup Redux Store",
+      //   status: "delegate",
+      //   completed: false,
+      //   isEditing: false,
+      // },
     ],
   },
   reducers: {
