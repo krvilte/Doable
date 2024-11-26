@@ -65,8 +65,8 @@ const Sidebar = () => {
             to={item.link}
             className={({ isActive }) =>
               `${
-                isActive ? "text-white bg-stone-500" : "text-white bg-none"
-              } flex gap-x-2 items-center rounded justify-center lg:justify-start hover:bg-stone-600 transition`
+                isActive ? "text-white bg-black" : "text-white bg-none"
+              } flex gap-x-2 items-center rounded justify-center lg:justify-start hover:bg-black/60 transition`
             }
           >
             <span>
@@ -79,7 +79,7 @@ const Sidebar = () => {
 
       <button
         onClick={handleLogout}
-        className="flex gap-x-2 text-white items-center rounded justify-center lg:justify-start hover:bg-stone-600 transition"
+        className="flex gap-x-2 text-white items-center rounded justify-center lg:justify-start hover:bg-black/60 transition"
       >
         <span>
           <img src={LogOut} alt="Logout" className="w-6 m-2" />

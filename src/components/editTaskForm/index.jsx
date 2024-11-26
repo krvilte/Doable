@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { editTask } from "../../redux/slices/taskSlice";
+import { editTask, toggleEdit } from "../../redux/slices/taskSlice";
 import { useState, useRef, useEffect } from "react";
 
 const EditTaskForm = ({ taskId }) => {
@@ -14,8 +14,8 @@ const EditTaskForm = ({ taskId }) => {
     if (text.trim() === "") {
       return;
     }
-    dispatch(editTask({ id: task.id, text }));
     dispatch(toggleEdit(task.id));
+    dispatch(editTask({ id: task.id, text }));
   };
 
   useEffect(() => {
