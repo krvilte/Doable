@@ -1,4 +1,3 @@
-import { nanoid } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/slices/taskSlice";
 
@@ -7,10 +6,10 @@ const AddNewTask = ({ status }) => {
 
   const handleSubmit = () => {
     const newTask = {
-      id: nanoid(),
       text: "Add your task :)",
       status: status,
       completed: false,
+      isEditing: true,
     };
 
     dispatch(addTask(newTask));

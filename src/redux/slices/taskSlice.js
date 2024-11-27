@@ -3,15 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
-    items: [
-      // {
-      //   id: 1,
-      //   text: "Setup Redux Store",
-      //   status: "delegate",
-      //   completed: false,
-      //   isEditing: false,
-      // },
-    ],
+    items: [],
   },
   reducers: {
     addTask: (state, action) => {

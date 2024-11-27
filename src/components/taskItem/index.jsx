@@ -87,12 +87,14 @@ const TaskList = ({ status }) => {
                     ref={dropdownRef}
                     className="absolute top-full mt-2 right-0 bg-white flex flex-col border border-gray-300 rounded shadow-lg z-10"
                   >
-                    <button
-                      onClick={() => handleEdit(item.id)}
-                      className="w-full px-4 py-1 text-left hover:bg-gray-100 transition-colors rounded-t"
-                    >
-                      Edit
-                    </button>
+                    {!item.completed && (
+                      <button
+                        onClick={() => handleEdit(item.id)}
+                        className="w-full px-4 py-1 text-left hover:bg-gray-100 transition-colors rounded-t"
+                      >
+                        Edit
+                      </button>
+                    )}
                     <button
                       onClick={() => dispatch(deleteTask(item.id))}
                       className="w-full px-4 py-1 text-left hover:bg-gray-100 transition-colors rounded-b"
