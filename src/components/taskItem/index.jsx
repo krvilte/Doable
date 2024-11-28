@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, getDocs, doc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import {
   setTasks,
@@ -53,6 +53,15 @@ const TaskList = ({ status }) => {
   const handleEdit = (taskId) => {
     dispatch(toggleEdit(taskId));
     setShowDropdown(null); // Hide dropdown after editing
+  };
+
+  const handleDelete = async (taskId) => {
+    try {
+      await deleteDoc(doc(db, "tasks", taskId));
+      dispatch(deleteTask(taskId));
+    } catch (error) {
+      console.log("Error while deleting task: ", error);
+    }
   };
 
   return (
@@ -112,7 +121,7 @@ const TaskList = ({ status }) => {
                       </button>
                     )}
                     <button
-                      onClick={() => dispatch(deleteTask(item.id))}
+                      onClick={() => handleDelete(item.id)}
                       className="w-full px-4 py-1 text-left hover:bg-gray-100 transition-colors rounded-b"
                     >
                       Delete
