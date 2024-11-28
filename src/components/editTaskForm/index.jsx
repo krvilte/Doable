@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editTask, toggleEdit } from "../../redux/slices/taskSlice";
 import { useState, useRef, useEffect } from "react";
 
-const EditTaskForm = ({ taskId }) => {
+const EditTaskForm = ({ taskId, onSave }) => {
   const dispatch = useDispatch();
   const task = useSelector((state) =>
     state.tasks.items.find((item) => item.id === taskId)
@@ -15,7 +15,7 @@ const EditTaskForm = ({ taskId }) => {
       return;
     }
     dispatch(toggleEdit(task.id));
-    dispatch(editTask({ id: task.id, text }));
+    onSave({ ...task, text });
   };
 
   useEffect(() => {

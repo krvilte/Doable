@@ -13,6 +13,7 @@ import {
   deleteTask,
   toggleComplete,
   toggleEdit,
+  editTask,
 } from "../../redux/slices/taskSlice";
 import EditTaskForm from "../../components/editTaskForm";
 
@@ -79,13 +80,26 @@ const TaskList = ({ status }) => {
     }
   };
 
+  const handleSaveTask = async (task) => {
+    try {
+      await updateDoc(doc(db, "tasks", task.id), { text: task.text });
+      dispatch(editTask(task));
+    } catch (error) {
+      console.error("Error updating task: ", error);
+    }
+  };
+
   return (
     <ol className="flex flex-col py-2 list-decimal">
       {tasks
         .filter((item) => item.status === status)
         .map((item) =>
           item.isEditing ? (
-            <EditTaskForm key={item.id} taskId={item.id} />
+            <EditTaskForm
+              key={item.id}
+              taskId={item.id}
+              onSave={handleSaveTask}
+            />
           ) : (
             <li
               key={item.id}
