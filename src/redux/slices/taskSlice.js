@@ -6,6 +6,9 @@ const tasksSlice = createSlice({
     items: [],
   },
   reducers: {
+    setTasks: (state, action) => {
+      state.items = action.payload;
+    },
     addTask: (state, action) => {
       state.items.push({ ...action.payload, isEditing: true });
     },
@@ -36,6 +39,12 @@ const tasksSlice = createSlice({
   },
 });
 
-export const { addTask, editTask, deleteTask, toggleComplete, toggleEdit } =
-  tasksSlice.actions;
+export const {
+  setTasks,
+  addTask,
+  editTask,
+  deleteTask,
+  toggleComplete,
+  toggleEdit,
+} = tasksSlice.actions;
 export default tasksSlice.reducer;

@@ -1,17 +1,33 @@
-import EditTaskForm from "../../components/editTaskForm";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../config/firebase";
 import {
+  setTasks,
   deleteTask,
   toggleComplete,
   toggleEdit,
 } from "../../redux/slices/taskSlice";
-import { useState, useRef, useEffect } from "react";
+import EditTaskForm from "../../components/editTaskForm";
 
 const TaskList = ({ status }) => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks.items);
   const [showDropdown, setShowDropdown] = useState(null);
+  const tasks = useSelector((state) => state.tasks.items);
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const fetchTask = async () => {
+      const tasksSnapshot = await getDocs(collection(db, "tasks"));
+      const tasksList = tasksSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      dispatch(setTasks(tasksList));
+    };
+
+    fetchTask();
+  }, [dispatch]);
 
   const handleDropdown = (taskId) => {
     if (showDropdown === taskId) {
