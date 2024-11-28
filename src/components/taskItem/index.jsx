@@ -1,6 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { collection, deleteDoc, getDocs, doc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  getDocs,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../config/firebase";
 import {
   setTasks,
@@ -50,6 +56,15 @@ const TaskList = ({ status }) => {
     };
   }, []);
 
+  const handleComplete = async (taskId, completed) => {
+    try {
+      await updateDoc(doc(db, "tasks", taskId), { completed: !completed });
+      dispatch(toggleComplete(taskId, completed));
+    } catch (error) {
+      console.error("Error completing task: ", error);
+    }
+  };
+
   const handleEdit = (taskId) => {
     dispatch(toggleEdit(taskId));
     setShowDropdown(null); // Hide dropdown after editing
@@ -79,7 +94,8 @@ const TaskList = ({ status }) => {
               <div className="flex items-center gap-x-2">
                 <input
                   id="default-checkbox"
-                  onClick={() => dispatch(toggleComplete(item.id))}
+                  onChange={() => handleComplete(item.id, item.completed)}
+                  checked={item.completed}
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600"
                 />
