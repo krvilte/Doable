@@ -6,7 +6,7 @@ import Check from "../../assets/icons/check";
 const Board = () => {
   return (
     <Layout>
-      <div className="m-5">
+      <div className="mx-8 my-5">
         <h1 className="text-2xl font-semibold">Eisenhower Matrix</h1>
         <hr className="mt-4 mb-4 border-1 border-gray-300" />
 

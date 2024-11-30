@@ -1,6 +1,6 @@
 import React from "react";
 
-const Logout = ({ stroke, style }) => {
+const LogoutIcon = ({ stroke, style }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,4 +19,4 @@ const Logout = ({ stroke, style }) => {
   );
 };
 
-export default Logout;
+export default LogoutIcon;

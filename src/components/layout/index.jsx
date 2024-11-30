@@ -3,7 +3,7 @@ import Sidebar from "../sidebar";
 
 const Layout = ({ children }) => {
   return (
-    <div className="flex text-[#232323] dark:text-white">
+    <div className="flex">
       <aside className="flex w-16 gap-x-4 bg-gray-100 fixed top-0 left-0 z-40 lg:w-64 h-screen dark:bg-stone-900">
         <Sidebar />
       </aside>

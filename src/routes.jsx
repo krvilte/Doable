@@ -3,7 +3,7 @@ import Home from "./pages/home";
 import Error from "./pages/error";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
-import Profile from "./pages/profile";
+import Settings from "./pages/settings";
 import Board from "./pages/board";
 import RequireAuth from "./components/requireAuth";
 
@@ -18,9 +18,9 @@ const router = createBrowserRouter([
         element: <Board />,
       },
       {
-        path: "profile",
+        path: "settings",
         errorElement: <Error />,
-        element: <Profile />,
+        element: <Settings />,
       },
     ],
   },
