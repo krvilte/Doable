@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useAuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import Icon from "../../assets/icons/icon.svg";
 import Google from "../../assets/icons/google.svg";
 
 function Signup() {
