@@ -45,13 +45,13 @@ const Sidebar = () => {
         <div className="w-full p-2">
           <Link to={"/board"}>
             <Icon
-              fill={"#232323"}
+              fill={"#3C3D37"}
               style={"size-8 block w-full lg:hidden flex justify-center"}
             />
 
             <Logo
-              txtFill={"#232323"}
-              iconFill={"#232323"}
+              txtFill={"#3C3D37"}
+              iconFill={"#3C3D37"}
               style={"hidden max-h-[35px] lg:block"}
             />
           </Link>

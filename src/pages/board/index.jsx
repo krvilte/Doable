@@ -38,7 +38,7 @@ const Board = () => {
           <div className="p-4 m-auto w-full max-w-[450px] rounded border border-black/50 shadow-md">
             <h2 className="flex items-center gap-x-2 text-lg pb-2 text-red-600 font-semibold border-b-[1px] border-black/20">
               <Check stroke={"#dc2626"} style="size-6 " />
-              DELEGATE
+              DELETE
             </h2>
             <TaskList status="delete" />
             <AddNewTask status="delete" />

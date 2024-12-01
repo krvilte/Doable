@@ -1,3 +1,6 @@
+import React from "react";
+import imageSrc from "../../assets/images/02.png";
+
 const AboutSection = () => {
   return (
     <section id="about" className="bg-white py-16 md:py-24">
@@ -6,9 +9,9 @@ const AboutSection = () => {
           {/* Image or Illustration */}
           <div className="w-full md:w-1/2">
             <img
-              src="https://via.placeholder.com/500x400" // Replace with an app-related image or illustration
-              alt="Doable App Concept"
-              className="rounded-lg shadow-xl w-full object-cover"
+              src={imageSrc}
+              alt="Eisenhower Matrix Illustration"
+              className="w-full h-full object-contain"
             />
           </div>
 

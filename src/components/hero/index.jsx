@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import matrixImg from "../../assets/images/01.png";
 
 const HeroSection = () => {
   return (
@@ -34,11 +35,12 @@ const HeroSection = () => {
         <div className="w-full md:w-1/2 relative z-10">
           <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
             <img
-              src="https://via.placeholder.com/600x400" // Replace with your image/illustration
+              draggable="none"
+              src={matrixImg}
               alt="Eisenhower Matrix Illustration"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary-100 to-white opacity-60"></div>
+            {/* <div className="absolute inset-0 bg-gradient-to-r from-primary-100 to-white opacity-60"></div> */}
           </div>
         </div>
       </div>
