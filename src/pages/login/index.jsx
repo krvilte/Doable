@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Google from "../../assets/icons/google.svg";
 import Logo from "../../assets/icons/logo";
+import Close from "../../assets/icons/close";
 
 const Login = () => {
   const {
@@ -38,12 +39,20 @@ const Login = () => {
   return (
     <main>
       <div className="bg-gray-50 text-[#232323] h-screen flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="container flex justify-end p-2">
+          <Link to={"/"}>
+            <Close stroke={"#dc2626"} sWidth={"2.5"} style={"size-6"} />
+          </Link>
+        </div>
+
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <Logo
-            textFill={"#232323"}
-            iconFill={"#232323"}
-            style={"mx-auto mb-6  h-[30px] max-h-[100px]"}
-          />
+          <Link to={"/"}>
+            <Logo
+              textFill={"#232323"}
+              iconFill={"#232323"}
+              style={"mx-auto mb-6  h-[30px] max-h-[100px]"}
+            />
+          </Link>
           <h2 className="mt-4 text-center text-3xl font-bold tracking-tight">
             Sign In
           </h2>
@@ -78,7 +87,7 @@ const Login = () => {
                 Email{" "}
               </label>
               <div className="mt-2">
-                <div className="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-primary-600">
+                <div className="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-primary-400">
                   <input
                     name="email"
                     placeholder="Enter email"
@@ -111,7 +120,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="mt-2">
-                <div className="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-primary-600">
+                <div className="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-primary-400">
                   <input
                     name="password"
                     type="password"
@@ -140,7 +149,7 @@ const Login = () => {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-primary-600 px-4 py-2 text-sm/6 font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+                className="flex w-full justify-center rounded-md bg-primary-400 px-4 py-2 text-sm/6 font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
               >
                 Sign in
               </button>

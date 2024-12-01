@@ -11,11 +11,9 @@ function Settings() {
 
         <p className="py-2 text-xl font-semibold">Email Address</p>
         <div className="flex flex-col sm:flex-row justify-between sm:items-center">
-          <p className="text-gray-600">
+          <p>
             Your email address is{" "}
-            <span className="font-semibold text-primary-600">
-              {auth.currentUser.email}
-            </span>
+            <span className="font-semibold">{auth.currentUser.email}</span>
           </p>
           <button className="inline-flex text-sm font-semibold text-primary-600 underline decoration-2">
             Change
@@ -71,7 +69,7 @@ function Settings() {
             Recover Account
           </a>
         </p>
-        <button className="mt-4 rounded-sm bg-primary-600 px-4 py-2">
+        <button className="mt-4 rounded-sm bg-primary-400 px-4 py-2 hover:bg-primary-500">
           Save Password
         </button>
         <hr className="mt-4 mb-8" />
